@@ -9,15 +9,44 @@
         /* GIAO DIỆN DARK MODE XỊN XÒ */
         body { margin: 0; padding: 0; background: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; }
         
-        /* HEADER */
+        /* === HEADER THƯƠNG HIỆU MỚI (ĐÃ SỬA) === */
         .header {
-            background: linear-gradient(135deg, #6366f1, #a855f7); padding: 40px 20px; text-align: center;
-            border-bottom: 4px solid #f0abfc; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+            background: #1e293b; /* Nền tối sang trọng thay cho màu tím */
+            padding: 20px 30px;
+            border-bottom: 1px solid #334155;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex; /* Xếp logo và chữ ngang hàng */
+            align-items: center;
+            justify-content: center; /* Canh giữa header */
+            gap: 25px; /* Khoảng cách giữa Logo và Chữ */
         }
-        .header h1 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: #fff; }
-        .header p { margin-top: 10px; font-size: 14px; color: #f1f5f9; }
+        
+        /* LOGO THƯƠNG HIỆU */
+        .header-logo img {
+            width: 80px; height: 80px; object-fit: contain;
+            /* Hiệu ứng phát sáng xanh công nghệ */
+            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); 
+        }
 
-        /* THANH QUẢNG CÁO (CHỖ KIẾM TIỀN PHỤ) - ĐÃ FIX */
+        /* KHỐI VĂN BẢN BÊN CẠNH LOGO */
+        .header-text { text-align: left; }
+        .header h1 { 
+            margin: 0; font-size: 26px; text-transform: uppercase; letter-spacing: 1px; color: #fff; font-weight: 800;
+            background: linear-gradient(to right, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header p { margin-top: 8px; font-size: 14px; color: #94a3b8; font-style: italic; }
+        
+        /* RESPONSIVE HEADER TRÊN MOBILE */
+        @media (max-width: 768px) {
+            .header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
+            .header-text { text-align: center; }
+            .header-logo img { width: 60px; height: 60px; }
+            .header h1 { font-size: 22px; }
+        }
+        /* ======================================= */
+
+
+        /* THANH QUẢNG CÁO A-ADS (BITCOIN) */
         .ad-banner { 
             background: #000; padding: 10px; text-align: center; border-bottom: 1px solid #334155; 
             min-height: 100px; display: flex; align-items: center; justify-content: center;
@@ -30,7 +59,7 @@
         /* THẺ SẢN PHẨM (CARD) */
         .card {
             background: #1e293b; border-radius: 15px; overflow: hidden; transition: transform 0.3s;
-            border: 1px solid #334155; position: relative; display: flex; flex-direction: column;
+            border: 1px solid #334155; position: relative; display: flex; flex-direction: column; cursor: pointer;
         }
         .card:hover { transform: translateY(-5px); border-color: #a855f7; box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2); }
         
@@ -56,24 +85,37 @@
         .btn-download:hover { opacity: 0.9; transform: scale(1.02); }
         .btn-download i { margin-right: 5px; }
 
+        /* BANNER SHOPEE CUỐI TRANG */
+        .shopee-banner {
+            margin: 40px auto; max-width: 800px; text-align: center; padding: 20px;
+            background: linear-gradient(45deg, #ff5722, #f53d2d); border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(245, 61, 45, 0.4); animation: pulse 2s infinite;
+        }
+        .shopee-banner a { color: white; text-decoration: none; font-weight: bold; font-size: 18px; display: block; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+
         /* FOOTER */
         .footer { text-align: center; padding: 30px; color: #64748b; font-size: 12px; margin-top: 50px; border-top: 1px solid #334155; }
         .footer a { color: #94a3b8; text-decoration: none; }
 
-        /* RESPONSIVE CHO BANNER QUẢNG CÁO */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .ad-banner iframe { transform: scale(0.5); }
         }
 
     </style>
 </head>
-<body>
+<body onclick="kichHoatMaTranKiemTien()">
 
     <div class="header">
-        <h1>🚀 KHO APP AI & TOOLS VIP</h1>
-        <p>Tổng hợp công cụ Trí Tuệ Nhân Tạo kiếm tiền MMO đỉnh nhất 2026</p>
+        <div class="header-logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828807.png" alt="AI Tools Logo">
+        </div>
+        <div class="header-text">
+            <h1>KHO APP AI & TOOLS VIP</h1>
+            <p>Hệ sinh thái công cụ Trí Tuệ Nhân Tạo & MMO đỉnh cao 2026</p>
+        </div>
     </div>
-
     <div class="ad-banner">
         <div id="frame" style="width: 100%; height: auto; display:flex; justify-content:center; overflow: hidden;">
             <iframe data-aa='2422850' src='//ad.a-ads.com/2422850/?size=728x90' 
@@ -84,7 +126,7 @@
     <div class="container">
         <div class="grid">
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('baby')">
                 <span class="badge">HOT TREND 🔥</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500');"></div>
                 <div class="card-body">
@@ -96,71 +138,100 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('topmediai')">
                 <span class="badge">18+ ART</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">TopMediai Art Gen</div>
                     <div class="card-desc">Vẽ ảnh gái xinh Realistic/Anime không bị chặn Prompt. Render siêu tốc.</div>
-                    <a href="https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4" target="_blank" class="btn-download">
-                        <i class="fas fa-magic"></i> DÙNG THỬ FREE
-                    </a>
+                    <button class="btn-download"><i class="fas fa-magic"></i> DÙNG THỬ FREE</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('magicmic')">
                 <span class="badge">TROLL GAME</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">iMyFone MagicMic</div>
                     <div class="card-desc">Đổi giọng Nam thành Nữ thời gian thực. Troll bạn bè trên Discord/Zalo.</div>
-                    <a href="https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4" target="_blank" class="btn-download">
-                        <i class="fas fa-microphone-alt"></i> TẢI XUỐNG
-                    </a>
+                    <button class="btn-download"><i class="fas fa-microphone-alt"></i> TẢI XUỐNG</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('chatart')">
                 <span class="badge">MMO TOOL</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">ChatArt Video AI</div>
                     <div class="card-desc">Chuyển văn bản thành Video kiếm tiền Tiktok/Youtube tự động (Sora 2).</div>
-                    <a href="https://www.chatartpro.com/?from_ua=CQEWVNZ4" target="_blank" class="btn-download">
-                        <i class="fas fa-video"></i> TẠO VIDEO
-                    </a>
+                    <button class="btn-download"><i class="fas fa-video"></i> TẠO VIDEO</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('anyto')">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">iMyFone AnyTo</div>
                     <div class="card-desc">Fake GPS iPhone/Android đi bất cứ đâu. Hack Tinder, Pokemon Go.</div>
-                    <a href="https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4" target="_blank" class="btn-download">
-                        <i class="fas fa-map-marker-alt"></i> FAKE VỊ TRÍ
-                    </a>
+                    <button class="btn-download"><i class="fas fa-map-marker-alt"></i> FAKE VỊ TRÍ</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" onclick="moLinkAff('repair')">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">UltraRepair AI</div>
                     <div class="card-desc">Phục hồi ảnh mờ, video lỗi, file hỏng. Làm nét ảnh cũ cực đỉnh.</div>
-                    <a href="https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4" target="_blank" class="btn-download">
-                        <i class="fas fa-wrench"></i> SỬA FILE NGAY
-                    </a>
+                    <button class="btn-download"><i class="fas fa-wrench"></i> SỬA FILE NGAY</button>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div class="footer">
-        &copy; 2026 AI Tools Market. All rights reserved. <br>
-        <span style="opacity:0.5">Privacy Policy | Terms of Service</span>
+    <div class="shopee-banner" onclick="window.open('https://shopee.vn/universal-link/YOUR_SHOPEE_LINK', '_blank')">
+        <a href="#">🎁 SIÊU SALE HÔM NAY - GIẢM 50% PHỤ KIỆN PC/GAMING <br> <span style="font-size:14px; opacity:0.8">(Bấm để nhận Voucher)</span></a>
     </div>
+
+    <div class="footer">
+        &copy; 2026 AI Tools Market. All rights reserved.
+    </div>
+
+    <script>
+        // === CẤU HÌNH LINK KIẾM TIỀN CỦA BOSS ===
+        const LINKS_CONFIG = {
+            'baby': "baby.html", // Trang nội bộ
+            'topmediai': "https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4",
+            'magicmic': "https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4",
+            'chatart': "https://www.chatartpro.com/?from_ua=CQEWVNZ4",
+            'anyto': "https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4",
+            'repair': "https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4"
+        };
+
+        // KHO LINK RÁC (Boss nhớ thay link thật vào đây nha)
+        const KHO_LINK_POPUP = [
+            "https://shopee.vn/universal-link/...", 
+            "https://link-monetag-direct.com/...",
+            "https://link-adsterra.com/..."
+        ];
+
+        let daMoPopup = false;
+
+        function moLinkAff(key) {
+            const linkChinh = LINKS_CONFIG[key];
+            if(linkChinh) window.open(linkChinh, '_blank');
+        }
+
+        function kichHoatMaTranKiemTien() {
+            if (!daMoPopup) {
+                const linkKiemTien = KHO_LINK_POPUP[Math.floor(Math.random() * KHO_LINK_POPUP.length)];
+                if (linkKiemTien && linkKiemTien.includes("http")) {
+                     window.open(linkKiemTien, '_blank');
+                }
+                daMoPopup = true;
+            }
+        }
+    </script>
 
 </body>
 </html>
