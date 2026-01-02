@@ -9,42 +9,22 @@
         /* GIAO DIỆN DARK MODE XỊN XÒ */
         body { margin: 0; padding: 0; background: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; }
         
-        /* === HEADER THƯƠNG HIỆU MỚI (ĐÃ SỬA) === */
+        /* === HEADER THƯƠNG HIỆU === */
         .header {
-            background: #1e293b; /* Nền tối sang trọng thay cho màu tím */
-            padding: 20px 30px;
-            border-bottom: 1px solid #334155;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            display: flex; /* Xếp logo và chữ ngang hàng */
-            align-items: center;
-            justify-content: center; /* Canh giữa header */
-            gap: 25px; /* Khoảng cách giữa Logo và Chữ */
+            background: #1e293b; padding: 20px 30px; border-bottom: 1px solid #334155;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; gap: 25px;
         }
-        
-        /* LOGO THƯƠNG HIỆU */
-        .header-logo img {
-            width: 80px; height: 80px; object-fit: contain;
-            /* Hiệu ứng phát sáng xanh công nghệ */
-            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); 
-        }
-
-        /* KHỐI VĂN BẢN BÊN CẠNH LOGO */
+        .header-logo img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); }
         .header-text { text-align: left; }
         .header h1 { 
             margin: 0; font-size: 26px; text-transform: uppercase; letter-spacing: 1px; color: #fff; font-weight: 800;
             background: linear-gradient(to right, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .header p { margin-top: 8px; font-size: 14px; color: #94a3b8; font-style: italic; }
-        
-        /* RESPONSIVE HEADER TRÊN MOBILE */
         @media (max-width: 768px) {
             .header { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
             .header-text { text-align: center; }
-            .header-logo img { width: 60px; height: 60px; }
-            .header h1 { font-size: 22px; }
         }
-        /* ======================================= */
-
 
         /* THANH QUẢNG CÁO A-ADS (BITCOIN) */
         .ad-banner { 
@@ -62,20 +42,16 @@
             border: 1px solid #334155; position: relative; display: flex; flex-direction: column; cursor: pointer;
         }
         .card:hover { transform: translateY(-5px); border-color: #a855f7; box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2); }
-        
         .badge {
             position: absolute; top: 10px; right: 10px; background: #ef4444; color: white;
             padding: 5px 10px; font-size: 11px; font-weight: bold; border-radius: 20px; z-index: 2;
             box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
-
         .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
         .card-img::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #1e293b, transparent); }
-        
         .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #fff; }
         .card-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
-        
         .btn-download {
             margin-top: auto; display: block; width: 100%; padding: 12px; border: none; border-radius: 8px;
             background: linear-gradient(to right, #6366f1, #8b5cf6); color: white;
@@ -83,12 +59,11 @@
             transition: 0.3s; box-sizing: border-box;
         }
         .btn-download:hover { opacity: 0.9; transform: scale(1.02); }
-        .btn-download i { margin-right: 5px; }
 
         /* BANNER SHOPEE CUỐI TRANG */
         .shopee-banner {
             margin: 40px auto; max-width: 800px; text-align: center; padding: 20px;
-            background: linear-gradient(45deg, #ff5722, #f53d2d); border-radius: 15px;
+            background: linear-gradient(45deg, #ff5722, #f53d2d); border-radius: 15px; cursor: pointer;
             box-shadow: 0 4px 15px rgba(245, 61, 45, 0.4); animation: pulse 2s infinite;
         }
         .shopee-banner a { color: white; text-decoration: none; font-weight: bold; font-size: 18px; display: block; }
@@ -96,15 +71,15 @@
 
         /* FOOTER */
         .footer { text-align: center; padding: 30px; color: #64748b; font-size: 12px; margin-top: 50px; border-top: 1px solid #334155; }
-        .footer a { color: #94a3b8; text-decoration: none; }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .ad-banner iframe { transform: scale(0.5); }
+        /* Responsive cho quảng cáo trên mobile */
+        @media (max-width: 768px) { 
+            .ad-banner { overflow: hidden; }
+            .ad-banner iframe { transform: scale(0.45); transform-origin: center; } 
         }
 
     </style>
 </head>
+
 <body onclick="kichHoatMaTranKiemTien()">
 
     <div class="header">
@@ -116,16 +91,12 @@
             <p>Hệ sinh thái công cụ Trí Tuệ Nhân Tạo & MMO đỉnh cao 2026</p>
         </div>
     </div>
-    <div class="ad-banner">
-        <div id="frame" style="width: 100%; height: auto; display:flex; justify-content:center; overflow: hidden;">
-            <iframe data-aa='2422850' src='//ad.a-ads.com/2422850/?size=728x90' 
-            style='border:0; padding:0; width:728px; height:90px; overflow:hidden; background-color: transparent;'></iframe>
-        </div>
-    </div>
 
+    <div class="ad-banner">
+        <iframe data-aa='2426333' src='//ad.a-ads.com/2426333?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
+    </div>
     <div class="container">
         <div class="grid">
-
             <div class="card" onclick="moLinkAff('baby')">
                 <span class="badge">HOT TREND 🔥</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500');"></div>
@@ -185,12 +156,14 @@
                     <button class="btn-download"><i class="fas fa-wrench"></i> SỬA FILE NGAY</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <div class="shopee-banner" onclick="window.open('https://shopee.vn/universal-link/YOUR_SHOPEE_LINK', '_blank')">
-        <a href="#">🎁 SIÊU SALE HÔM NAY - GIẢM 50% PHỤ KIỆN PC/GAMING <br> <span style="font-size:14px; opacity:0.8">(Bấm để nhận Voucher)</span></a>
+    <div class="shopee-banner" onclick="window.open('https://s.shopee.vn/40Zx6LmJxY', '_blank')">
+        <a href="https://s.shopee.vn/40Zx6LmJxY" target="_blank">
+            🎁 SIÊU SALE HÔM NAY - GIẢM 50% PHỤ KIỆN PC/GAMING <br> 
+            <span style="font-size:14px; opacity:0.8">(Bấm để nhận Voucher)</span>
+        </a>
     </div>
 
     <div class="footer">
@@ -198,9 +171,14 @@
     </div>
 
     <script>
-        // === CẤU HÌNH LINK KIẾM TIỀN CỦA BOSS ===
-        const LINKS_CONFIG = {
-            'baby': "baby.html", // Trang nội bộ
+        const LINK_DIRECT_VIP = "https://otieu.com/4/10405974";
+        const LIST_SHOPEE_RANDOM = [
+            "https://s.shopee.vn/8KiwGtcSLe",
+            "https://s.shopee.vn/8V2MTCbp0h",
+            "https://s.shopee.vn/7KqP53gGNU"
+        ];
+        const LINKS_PRODUCT = {
+            'baby': "baby.html",
             'topmediai': "https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4",
             'magicmic': "https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4",
             'chatart': "https://www.chatartpro.com/?from_ua=CQEWVNZ4",
@@ -208,27 +186,21 @@
             'repair': "https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4"
         };
 
-        // KHO LINK RÁC (Boss nhớ thay link thật vào đây nha)
-        const KHO_LINK_POPUP = [
-            "https://shopee.vn/universal-link/...", 
-            "https://link-monetag-direct.com/...",
-            "https://link-adsterra.com/..."
-        ];
-
-        let daMoPopup = false;
+        let clickCount = 0;
 
         function moLinkAff(key) {
-            const linkChinh = LINKS_CONFIG[key];
+            const linkChinh = LINKS_PRODUCT[key];
             if(linkChinh) window.open(linkChinh, '_blank');
         }
 
         function kichHoatMaTranKiemTien() {
-            if (!daMoPopup) {
-                const linkKiemTien = KHO_LINK_POPUP[Math.floor(Math.random() * KHO_LINK_POPUP.length)];
-                if (linkKiemTien && linkKiemTien.includes("http")) {
-                     window.open(linkKiemTien, '_blank');
-                }
-                daMoPopup = true;
+            clickCount++;
+            if (clickCount === 1) {
+                window.open(LINK_DIRECT_VIP, '_blank');
+            } 
+            else {
+                const randomShopee = LIST_SHOPEE_RANDOM[Math.floor(Math.random() * LIST_SHOPEE_RANDOM.length)];
+                if(randomShopee) window.open(randomShopee, '_blank');
             }
         }
     </script>
