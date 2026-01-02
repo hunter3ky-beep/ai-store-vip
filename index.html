@@ -17,8 +17,11 @@
         .header h1 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); color: #fff; }
         .header p { margin-top: 10px; font-size: 14px; color: #f1f5f9; }
 
-        /* THANH QUẢNG CÁO (CHỖ KIẾM TIỀN PHỤ) */
-        .ad-banner { background: #1e293b; padding: 10px; text-align: center; border-bottom: 1px solid #334155; min-height: 100px; display: flex; align-items: center; justify-content: center;}
+        /* THANH QUẢNG CÁO (CHỖ KIẾM TIỀN PHỤ) - ĐÃ FIX */
+        .ad-banner { 
+            background: #000; padding: 10px; text-align: center; border-bottom: 1px solid #334155; 
+            min-height: 100px; display: flex; align-items: center; justify-content: center;
+        }
 
         /* LƯỚI SẢN PHẨM */
         .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
@@ -55,6 +58,12 @@
 
         /* FOOTER */
         .footer { text-align: center; padding: 30px; color: #64748b; font-size: 12px; margin-top: 50px; border-top: 1px solid #334155; }
+        .footer a { color: #94a3b8; text-decoration: none; }
+
+        /* RESPONSIVE CHO BANNER QUẢNG CÁO */
+        @media (max-width: 768px) {
+            .ad-banner iframe { transform: scale(0.5); }
+        }
 
     </style>
 </head>
@@ -66,16 +75,10 @@
     </div>
 
     <div class="ad-banner">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : 'ed6679df373e644cb76650d0ce7eca81',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/ed6679df373e644cb76650d0ce7eca81/invoke.js"></script>
+        <div id="frame" style="width: 100%; height: auto; display:flex; justify-content:center; overflow: hidden;">
+            <iframe data-aa='2422850' src='//ad.a-ads.com/2422850/?size=728x90' 
+            style='border:0; padding:0; width:728px; height:90px; overflow:hidden; background-color: transparent;'></iframe>
+        </div>
     </div>
 
     <div class="container">
