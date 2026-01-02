@@ -60,7 +60,7 @@
         }
         .btn-download:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* ADSTERRA */
+        /* ADSTERRA REF */
         .adsterra-section {
             text-align: center; margin: 40px auto 10px; max-width: 800px;
             padding: 20px; border-top: 1px dashed #334155;
@@ -109,7 +109,7 @@
 
     <div class="container">
         <div class="grid">
-            <div class="card" onclick="moAppVaShopee('baby', event)">
+            <div class="card" onclick="xuLyClickApp('baby', event)">
                 <span class="badge">HOT TREND 🔥</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500');"></div>
                 <div class="card-body">
@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('topmediai', event)">
+            <div class="card" onclick="xuLyClickApp('topmediai', event)">
                 <span class="badge">18+ ART</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('magicmic', event)">
+            <div class="card" onclick="xuLyClickApp('magicmic', event)">
                 <span class="badge">TROLL GAME</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500');"></div>
                 <div class="card-body">
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('chatart', event)">
+            <div class="card" onclick="xuLyClickApp('chatart', event)">
                 <span class="badge">MMO TOOL</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500');"></div>
                 <div class="card-body">
@@ -151,7 +151,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('anyto', event)">
+            <div class="card" onclick="xuLyClickApp('anyto', event)">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">iMyFone AnyTo</div>
@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('repair', event)">
+            <div class="card" onclick="xuLyClickApp('repair', event)">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">UltraRepair AI</div>
@@ -190,12 +190,15 @@
     </div>
 
     <script>
-        const LINK_OTIEU_FIRST = "https://otieu.com/4/10385613";
+        const LINK_OTIEU_BODY = "https://otieu.com/4/10385613";
+        const LINK_OTIEU_APP_OTHER = "https://otieu.com/4/10405974"; // Link Otieu thứ 2
+        
         const LIST_SHOPEE = [
             "https://s.shopee.vn/8KiwGtcSLe",
             "https://s.shopee.vn/8V2MTCbp0h",
             "https://s.shopee.vn/7KqP53gGNU"
         ];
+        
         const LINKS_PRODUCT = {
             'baby': "baby.html",
             'topmediai': "https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4",
@@ -205,36 +208,49 @@
             'repair': "https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4"
         };
 
-        // Biến kiểm tra đã mở Otieu và Shopee chưa
-        let isOtieuOpened = false;
-        let isShopeeOpened = false;
+        // TRẠNG THÁI
+        let isOtieuBodyOpened = false; // Đã mở Otieu toàn trang chưa?
+        let isShopeeUsed = false;      // Đã dùng lượt Shopee chưa?
+        let appClickStatus = {};       // Lưu trạng thái click của từng App (để biết app nào bấm rồi)
 
-        // 1. CLICK BODY: NHẢY OTIEU 1 LẦN DUY NHẤT
+        // 1. CLICK BODY: NHẢY OTIEU 1 (Lần đầu tiên chạm vào web)
         function clickBodyFirstTime() {
-            if (!isOtieuOpened) {
-                window.open(LINK_OTIEU_FIRST, '_blank');
-                isOtieuOpened = true; 
+            if (!isOtieuBodyOpened) {
+                window.open(LINK_OTIEU_BODY, '_blank');
+                isOtieuBodyOpened = true; 
             }
         }
 
-        // 2. CLICK APP: CHIA LÀM 2 GIAI ĐOẠN
-        function moAppVaShopee(key, event) {
-            // Ngăn sự kiện Otieu chen vào
-            if(event) event.stopPropagation();
+        // 2. CLICK VÀO APP: PHÂN PHỐI QUẢNG CÁO
+        function xuLyClickApp(key, event) {
+            if(event) event.stopPropagation(); // Chặn Otieu Body nhảy chen ngang
+
+            // Nếu App này chưa từng được bấm -> Đánh dấu là 0 lần click
+            if (!appClickStatus[key]) {
+                appClickStatus[key] = 0;
+            }
+
+            // Tăng số lần click vào App này
+            appClickStatus[key]++;
 
             const linkChinh = LINKS_PRODUCT[key];
-            const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
 
-            if (!isShopeeOpened) {
-                // === LẦN BẤM ĐẦU TIÊN: CHỈ MỞ SHOPEE ===
-                // Mở tab Shopee để lấy Cookie
-                window.open(randomShopee, '_blank');
-                
-                // Đánh dấu là đã mở Shopee rồi
-                isShopeeOpened = true; 
-            } else {
-                // === LẦN BẤM THỨ 2 TRỞ ĐI: MỞ APP THẬT ===
-                // Mở link sản phẩm cho khách tải
+            // === LẦN BẤM ĐẦU TIÊN VÀO APP NÀY ===
+            if (appClickStatus[key] === 1) {
+                // Kiểm tra xem Shopee đã được bung ra ở App nào trước đó chưa?
+                if (!isShopeeUsed) {
+                    // Chưa -> Bung SHOPEE (Ưu tiên cao nhất)
+                    const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
+                    window.open(randomShopee, '_blank');
+                    isShopeeUsed = true; // Đánh dấu là đã xài xong lượt Shopee
+                } else {
+                    // Đã xài Shopee rồi -> Bung OTIEU MỚI (Cho các app còn lại)
+                    window.open(LINK_OTIEU_APP_OTHER, '_blank');
+                }
+            } 
+            // === LẦN BẤM THỨ 2 TRỞ ĐI ===
+            else {
+                // Mở Link Sản Phẩm Thật cho khách tải
                 if(linkChinh) window.open(linkChinh, '_blank');
             }
         }
