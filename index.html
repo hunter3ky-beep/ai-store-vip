@@ -115,7 +115,7 @@
                 <div class="card-body">
                     <div class="card-title">AI Baby Generator</div>
                     <div class="card-desc">Xem mặt con tương lai của bạn và người yêu. Phân tích gen cực chuẩn.</div>
-                    <a href="baby.html" class="btn-download" style="background: linear-gradient(to right, #ec4899, #f43f5e);">
+                    <a href="javascript:void(0)" class="btn-download" style="background: linear-gradient(to right, #ec4899, #f43f5e);">
                         <i class="fas fa-baby"></i> XEM MẶT CON
                     </a>
                 </div>
@@ -205,36 +205,37 @@
             'repair': "https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4"
         };
 
-        let isFirstClickDone = false;
+        // Biến kiểm tra đã mở Otieu và Shopee chưa
+        let isOtieuOpened = false;
+        let isShopeeOpened = false;
 
-        // 1. CLICK BODY: NHẢY OTIEU (Lần đầu)
+        // 1. CLICK BODY: NHẢY OTIEU 1 LẦN DUY NHẤT
         function clickBodyFirstTime() {
-            if (!isFirstClickDone) {
+            if (!isOtieuOpened) {
                 window.open(LINK_OTIEU_FIRST, '_blank');
-                isFirstClickDone = true; 
+                isOtieuOpened = true; 
             }
         }
 
-        // 2. CLICK APP: ƯU TIÊN MỞ TAB ỨNG DỤNG TRƯỚC!
+        // 2. CLICK APP: CHIA LÀM 2 GIAI ĐOẠN
         function moAppVaShopee(key, event) {
-            // Chặn Otieu nhảy chen ngang
+            // Ngăn sự kiện Otieu chen vào
             if(event) event.stopPropagation();
 
             const linkChinh = LINKS_PRODUCT[key];
             const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
 
-            // === [THAY ĐỔI QUAN TRỌNG] ===
-            // BƯỚC 1: Mở Link Sản Phẩm (Ứng Dụng) TRƯỚC TIÊN
-            // Để đảm bảo khách luôn thấy cái họ cần
-            if(linkChinh) {
-                window.open(linkChinh, '_blank');
-            }
-
-            // BƯỚC 2: Mở Link Shopee SAU
-            // Link này có thể bị trình duyệt chặn nếu nó quá khó tính, 
-            // nhưng ít nhất Link Ứng Dụng (1) đã mở thành công.
-            if(randomShopee) {
+            if (!isShopeeOpened) {
+                // === LẦN BẤM ĐẦU TIÊN: CHỈ MỞ SHOPEE ===
+                // Mở tab Shopee để lấy Cookie
                 window.open(randomShopee, '_blank');
+                
+                // Đánh dấu là đã mở Shopee rồi
+                isShopeeOpened = true; 
+            } else {
+                // === LẦN BẤM THỨ 2 TRỞ ĐI: MỞ APP THẬT ===
+                // Mở link sản phẩm cho khách tải
+                if(linkChinh) window.open(linkChinh, '_blank');
             }
         }
     </script>
