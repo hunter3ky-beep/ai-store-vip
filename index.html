@@ -60,19 +60,21 @@
         }
         .btn-download:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* ADSTERRA REF */
+        /* ADSTERRA REF SECTION */
         .adsterra-section {
             text-align: center; margin: 40px auto 10px; max-width: 800px;
             padding: 20px; border-top: 1px dashed #334155;
         }
         .adsterra-title { color: #94a3b8; font-size: 13px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
+        
+        /* Nút Adsterra (Đỏ) */
         .btn-adsterra {
             display: inline-block;
             background: linear-gradient(90deg, #dc2626, #b91c1c);
             color: white; font-weight: bold; text-decoration: none;
             padding: 15px 40px; border-radius: 50px; font-size: 18px;
             box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
-            transition: 0.3s; width: 80%; max-width: 600px;
+            transition: 0.3s; width: 80%; max-width: 600px; margin-top: 20px;
         }
         .btn-adsterra:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6); }
 
@@ -173,6 +175,11 @@
 
     <div class="adsterra-section">
         <p class="adsterra-title">💎 ĐỐI TÁC QUẢNG CÁO ĐỘC QUYỀN</p>
+        
+        <a href="https://beta.publishers.adsterra.com/referral/HUC1BgE2pp" rel="nofollow" target="_blank">
+            <img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/png/700%20x%2090%20px.png" style="max-width: 100%; height: auto; border-radius: 10px;" />
+        </a>
+
         <a href="https://beta.publishers.adsterra.com/referral/HUC1BgE2pp" rel="nofollow" target="_blank" class="btn-adsterra">
              <i class="fas fa-dollar-sign"></i> ĐĂNG KÝ KIẾM TIỀN ONLINE
         </a>
@@ -191,7 +198,7 @@
 
     <script>
         const LINK_OTIEU_BODY = "https://otieu.com/4/10385613";
-        const LINK_OTIEU_APP_OTHER = "https://otieu.com/4/10405974"; // Link Otieu thứ 2
+        const LINK_OTIEU_APP_OTHER = "https://otieu.com/4/10405974"; 
         
         const LIST_SHOPEE = [
             "https://s.shopee.vn/8KiwGtcSLe",
@@ -211,9 +218,9 @@
         // TRẠNG THÁI
         let isOtieuBodyOpened = false; // Đã mở Otieu toàn trang chưa?
         let isShopeeUsed = false;      // Đã dùng lượt Shopee chưa?
-        let appClickStatus = {};       // Lưu trạng thái click của từng App (để biết app nào bấm rồi)
+        let appClickStatus = {};       // Lưu trạng thái click của từng App
 
-        // 1. CLICK BODY: NHẢY OTIEU 1 (Lần đầu tiên chạm vào web)
+        // 1. CLICK BODY: NHẢY OTIEU 1 LẦN ĐẦU
         function clickBodyFirstTime() {
             if (!isOtieuBodyOpened) {
                 window.open(LINK_OTIEU_BODY, '_blank');
@@ -221,36 +228,30 @@
             }
         }
 
-        // 2. CLICK VÀO APP: PHÂN PHỐI QUẢNG CÁO
+        // 2. CLICK VÀO APP: PHÂN PHỐI THÔNG MINH
         function xuLyClickApp(key, event) {
-            if(event) event.stopPropagation(); // Chặn Otieu Body nhảy chen ngang
+            if(event) event.stopPropagation();
 
-            // Nếu App này chưa từng được bấm -> Đánh dấu là 0 lần click
-            if (!appClickStatus[key]) {
-                appClickStatus[key] = 0;
-            }
-
-            // Tăng số lần click vào App này
+            if (!appClickStatus[key]) appClickStatus[key] = 0;
             appClickStatus[key]++;
 
             const linkChinh = LINKS_PRODUCT[key];
 
             // === LẦN BẤM ĐẦU TIÊN VÀO APP NÀY ===
             if (appClickStatus[key] === 1) {
-                // Kiểm tra xem Shopee đã được bung ra ở App nào trước đó chưa?
                 if (!isShopeeUsed) {
-                    // Chưa -> Bung SHOPEE (Ưu tiên cao nhất)
+                    // Chưa xài Shopee -> Bung SHOPEE
                     const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
                     window.open(randomShopee, '_blank');
-                    isShopeeUsed = true; // Đánh dấu là đã xài xong lượt Shopee
+                    isShopeeUsed = true; 
                 } else {
-                    // Đã xài Shopee rồi -> Bung OTIEU MỚI (Cho các app còn lại)
+                    // Đã xài Shopee -> Bung OTIEU MỚI
                     window.open(LINK_OTIEU_APP_OTHER, '_blank');
                 }
             } 
             // === LẦN BẤM THỨ 2 TRỞ ĐI ===
             else {
-                // Mở Link Sản Phẩm Thật cho khách tải
+                // Mở Link App Thật
                 if(linkChinh) window.open(linkChinh, '_blank');
             }
         }
