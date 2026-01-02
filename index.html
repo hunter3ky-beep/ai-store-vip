@@ -60,22 +60,21 @@
         }
         .btn-download:hover { opacity: 0.9; transform: scale(1.02); }
 
-        /* KHU VỰC ADSTERRA REFERRAL (MỚI) */
+        /* KHU VỰC ADSTERRA REFERRAL (NÚT ĐỎ) */
         .adsterra-section {
             text-align: center; margin: 40px auto 10px; max-width: 800px;
             padding: 20px; border-top: 1px dashed #334155;
         }
         .adsterra-title { color: #94a3b8; font-size: 13px; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
-        /* Nút Adsterra đẹp */
         .btn-adsterra {
             display: inline-block;
-            background: linear-gradient(90deg, #ff4b1f, #ff9068); /* Màu cam nổi bật */
+            background: linear-gradient(90deg, #dc2626, #b91c1c); /* Màu đỏ đậm */
             color: white; font-weight: bold; text-decoration: none;
             padding: 15px 40px; border-radius: 50px; font-size: 18px;
-            box-shadow: 0 4px 15px rgba(255, 75, 31, 0.4);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
             transition: 0.3s; width: 80%; max-width: 600px;
         }
-        .btn-adsterra:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 75, 31, 0.6); }
+        .btn-adsterra:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6); }
 
         /* BANNER SHOPEE */
         .shopee-banner {
@@ -111,7 +110,7 @@
 
     <div class="container">
         <div class="grid">
-            <div class="card" onclick="moAppVaShopee('baby')">
+            <div class="card" onclick="moAppVaShopee('baby', event)">
                 <span class="badge">HOT TREND 🔥</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500');"></div>
                 <div class="card-body">
@@ -123,7 +122,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('topmediai')">
+            <div class="card" onclick="moAppVaShopee('topmediai', event)">
                 <span class="badge">18+ ART</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
@@ -133,7 +132,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('magicmic')">
+            <div class="card" onclick="moAppVaShopee('magicmic', event)">
                 <span class="badge">TROLL GAME</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500');"></div>
                 <div class="card-body">
@@ -143,7 +142,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('chatart')">
+            <div class="card" onclick="moAppVaShopee('chatart', event)">
                 <span class="badge">MMO TOOL</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500');"></div>
                 <div class="card-body">
@@ -153,7 +152,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('anyto')">
+            <div class="card" onclick="moAppVaShopee('anyto', event)">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">iMyFone AnyTo</div>
@@ -162,7 +161,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="moAppVaShopee('repair')">
+            <div class="card" onclick="moAppVaShopee('repair', event)">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">UltraRepair AI</div>
@@ -176,7 +175,6 @@
 
     <div class="adsterra-section">
         <p class="adsterra-title">💎 ĐỐI TÁC QUẢNG CÁO ĐỘC QUYỀN</p>
-        
         <a href="https://beta.publishers.adsterra.com/referral/HUC1BgE2pp" rel="nofollow" target="_blank" class="btn-adsterra">
              <i class="fas fa-dollar-sign"></i> ĐĂNG KÝ KIẾM TIỀN ONLINE
         </a>
@@ -213,27 +211,32 @@
 
         let isFirstClickDone = false;
 
-        // 1. HÀM CLICK BODY (Chỉ chạy 1 lần duy nhất đầu tiên -> Mở Otieu)
+        // 1. HÀM CLICK BODY (Mở Otieu - Chỉ chạy khi bấm vào chỗ trống)
         function clickBodyFirstTime() {
             if (!isFirstClickDone) {
                 window.open(LINK_OTIEU_FIRST, '_blank');
-                isFirstClickDone = true; // Đánh dấu đã click xong, các lần sau bấm Body sẽ KHÔNG làm gì
+                isFirstClickDone = true; 
             }
         }
 
-        // 2. HÀM CLICK VÀO APP (Vừa mở App, vừa mở Random Shopee)
-        function moAppVaShopee(key) {
-            // Mở link sản phẩm chính
+        // 2. HÀM CLICK VÀO APP (Ưu tiên Sản phẩm & Shopee)
+        function moAppVaShopee(key, event) {
+            // QUAN TRỌNG: Ngăn không cho click này lan ra Body (Chặn Otieu bung ra)
+            if(event) event.stopPropagation();
+
+            // Mở link sản phẩm chính (Ưu tiên số 1)
             const linkChinh = LINKS_PRODUCT[key];
             if(linkChinh) {
                 window.open(linkChinh, '_blank');
             }
 
-            // Mở thêm Random 1 link Shopee (Ma trận)
-            const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
-            if(randomShopee) {
-                window.open(randomShopee, '_blank');
-            }
+            // Delay nhẹ 300ms rồi mới mở Shopee (Để trình duyệt không chặn vì mở 2 tab quá nhanh)
+            setTimeout(function() {
+                const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
+                if(randomShopee) {
+                    window.open(randomShopee, '_blank');
+                }
+            }, 300);
         }
     </script>
 
