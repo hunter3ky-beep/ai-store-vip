@@ -39,7 +39,7 @@
         .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
-        /* CARD */
+        /* CARD STYLE */
         .card {
             background: #1e293b; border-radius: 15px; overflow: hidden; transition: transform 0.3s;
             border: 1px solid #334155; position: relative; display: flex; flex-direction: column; cursor: pointer;
@@ -55,6 +55,8 @@
         .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #fff; }
         .card-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; }
+        
+        /* NÚT BẤM (CHỈ LÀ TRANG TRÍ, CLICk VÀO CARD LÀ ĐI LUÔN) */
         .btn-download {
             margin-top: auto; display: block; width: 100%; padding: 12px; border: none; border-radius: 8px;
             background: linear-gradient(to right, #6366f1, #8b5cf6); color: white;
@@ -92,7 +94,7 @@
     </style>
 </head>
 
-<body onclick="clickBodyShopee()">
+<body>
 
     <div class="header">
         <div class="header-logo">
@@ -112,19 +114,20 @@
 
     <div class="container">
         <div class="grid">
-            <div class="card" onclick="xuLyClickApp('baby', event)">
-                <span class="badge">HOT TREND 🔥</span>
-                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500');"></div>
+            
+            <div class="card" onclick="window.open('https://nutstudio.imyfone.com?from_ua=CQEWVNZ4', '_blank')">
+                <span class="badge" style="background: #e11d48;">AI SUPER APP 🚀</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
-                    <div class="card-title">AI Baby Generator</div>
-                    <div class="card-desc">Xem mặt con tương lai của bạn và người yêu. Phân tích gen cực chuẩn.</div>
-                    <a href="javascript:void(0)" class="btn-download" style="background: linear-gradient(to right, #ec4899, #f43f5e);">
-                        <i class="fas fa-baby"></i> XEM MẶT CON
-                    </a>
+                    <div class="card-title">iMyFone Nut Studio</div>
+                    <div class="card-desc">Trợ lý AI All-in-One: Tạo Video/Ảnh từ Text, Chat với GPT-4/Claude Offline. Cân mọi tác vụ sáng tạo.</div>
+                    <button class="btn-download" style="background: linear-gradient(to right, #e11d48, #be123c);">
+                        <i class="fas fa-robot"></i> TẢI MIỄN PHÍ
+                    </button>
                 </div>
             </div>
 
-            <div class="card" onclick="xuLyClickApp('topmediai', event)">
+            <div class="card" onclick="window.open('https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4', '_blank')">
                 <span class="badge">18+ ART</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
@@ -134,7 +137,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="xuLyClickApp('magicmic', event)">
+            <div class="card" onclick="window.open('https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4', '_blank')">
                 <span class="badge">TROLL GAME</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500');"></div>
                 <div class="card-body">
@@ -144,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="xuLyClickApp('chatart', event)">
+            <div class="card" onclick="window.open('https://www.chatartpro.com/?from_ua=CQEWVNZ4', '_blank')">
                 <span class="badge">MMO TOOL</span>
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500');"></div>
                 <div class="card-body">
@@ -154,7 +157,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="xuLyClickApp('anyto', event)">
+            <div class="card" onclick="window.open('https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4', '_blank')">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">iMyFone AnyTo</div>
@@ -163,7 +166,7 @@
                 </div>
             </div>
 
-            <div class="card" onclick="xuLyClickApp('repair', event)">
+            <div class="card" onclick="window.open('https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4', '_blank')">
                 <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">UltraRepair AI</div>
@@ -197,78 +200,5 @@
 
     <script>(function(s){s.dataset.zone='10410157',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
     
-    <script>
-        // --- 1. DANH SÁCH LINK ---
-        const LIST_SHOPEE = [
-            "https://s.shopee.vn/8KiwGtcSLe",
-            "https://s.shopee.vn/8V2MTCbp0h",
-            "https://s.shopee.vn/7KqP53gGNU"
-        ];
-        
-        const LIST_OTIEU = [
-            "https://otieu.com/4/10385613",
-            "https://otieu.com/4/10405974"
-        ];
-        
-        const LINKS_PRODUCT = {
-            'baby': "baby.html",
-            'topmediai': "https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4",
-            'magicmic': "https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4",
-            'chatart': "https://www.chatartpro.com/?from_ua=CQEWVNZ4",
-            'anyto': "https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4",
-            'repair': "https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4"
-        };
-
-        // Biến trạng thái: False = Chưa bấm, True = Đã bấm
-        let daMoShopee = false; 
-
-        // --- 2. HÀM CHUNG: MỞ TAB MỚI ---
-        function openInNewTab(url) {
-            window.open(url, '_blank');
-        }
-
-        // --- 3. CLICK TOÀN TRANG (SHOPEE ĐẦU TIÊN) ---
-        // Bất kỳ click nào đầu tiên vào web đều kích hoạt Shopee
-        function clickBodyShopee() {
-            if (!daMoShopee) {
-                // Random Shopee
-                const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
-                openInNewTab(randomShopee);
-                
-                // Đánh dấu đã mở Shopee
-                daMoShopee = true; 
-            }
-        }
-
-        // --- 4. CLICK VÀO APP (OTIEU + LINK THẬT) ---
-        function xuLyClickApp(key, event) {
-            // Ngăn sự kiện click body nổ ra (để tránh mở 2 lần Shopee nếu lỡ trùng)
-            if(event) event.stopPropagation();
-
-            const linkTai = LINKS_PRODUCT[key];
-
-            // Nếu chưa mở Shopee (Click thẳng vào App ngay khi vừa vào web)
-            // -> Ưu tiên mở Shopee trước (Aff "từ lúc đầu")
-            if (!daMoShopee) {
-                const randomShopee = LIST_SHOPEE[Math.floor(Math.random() * LIST_SHOPEE.length)];
-                openInNewTab(randomShopee);
-                daMoShopee = true; 
-                
-                // Vẫn mở link tải cho khách đỡ cáu
-                if(linkTai) openInNewTab(linkTai);
-            } 
-            // Nếu đã mở Shopee rồi (Các lần click sau)
-            // -> Mở Otieu (Random) + Link Tải
-            else {
-                // Mở Otieu (Quảng cáo)
-                const randomOtieu = LIST_OTIEU[Math.floor(Math.random() * LIST_OTIEU.length)];
-                openInNewTab(randomOtieu);
-
-                // Mở Link Tải Thật
-                if(linkTai) openInNewTab(linkTai);
-            }
-        }
-    </script>
-
-</body>
+    </body>
 </html>
