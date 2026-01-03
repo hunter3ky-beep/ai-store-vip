@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Baby Generator - Xem Mặt Con Tương Lai</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://quge5.com/88/tag.min.js" data-zone="198407" async data-cfasync="false"></script>
+    <style>
+        body { background: #0f172a; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; }
+        
+        /* BANNER QUẢNG CÁO */
+        .ad-banner { width: 100%; background: #000; padding: 10px; text-align: center; border-bottom: 1px solid #334155; }
+        .ad-banner img { max-width: 100%; height: auto; }
+
+        .container { max-width: 600px; width: 90%; margin-top: 20px; text-align: center; }
+        h1 { background: linear-gradient(to right, #f472b6, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; }
+        p { color: #94a3b8; font-size: 14px; margin-bottom: 30px; }
+
+        /* UPLOAD BOX */
+        .upload-area { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 25px; }
+        .upload-box { 
+            flex: 1; background: #1e293b; border: 2px dashed #475569; border-radius: 15px; 
+            height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .upload-box:hover { border-color: #ec4899; background: #334155; }
+        .upload-box i { font-size: 30px; color: #94a3b8; margin-bottom: 10px; }
+        .upload-box span { font-size: 13px; color: #cbd5e1; }
+        .preview-img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; display: none; }
+
+        /* BUTTON */
+        .btn-gen {
+            background: linear-gradient(to right, #ec4899, #8b5cf6); color: white; border: none;
+            padding: 15px 40px; border-radius: 50px; font-size: 18px; font-weight: bold;
+            cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+            transition: 0.3s;
+        }
+        .btn-gen:hover { transform: scale(1.02); opacity: 0.9; }
+        .btn-gen:disabled { background: #475569; cursor: not-allowed; box-shadow: none; }
+
+        /* LOADING */
+        .loading-area { display: none; margin-top: 20px; }
+        .progress-bar { width: 100%; height: 10px; background: #334155; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .progress-fill { height: 100%; background: #ec4899; width: 0%; transition: width 0.5s; }
+        .status-text { margin-top: 10px; font-style: italic; color: #a5b4fc; animation: blink 1s infinite; }
+
+        /* RESULT */
+        .result-area { display: none; margin-top: 30px; animation: fadeIn 1s; }
+        .result-img { width: 100%; border-radius: 15px; border: 3px solid #ec4899; box-shadow: 0 0 20px rgba(236, 72, 153, 0.5); }
+        .result-text { margin-top: 15px; font-size: 16px; color: #e2e8f0; }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="ad-banner">
+        <a href="https://aads.com/advertise/?partner=2422504" target="_blank">
+            <img src="https://aads.com/a_ads_banners/gif/english/728x90/simple_v1.gif" alt="Advertise with Anonymous Ads" width="728" height="90" />
+        </a>
+    </div>
+
+    <div class="container">
+        <h1>AI BABY GENERATOR</h1>
+        <p>Công nghệ AI mô phỏng gương mặt con chính xác 99%</p>
+
+        <div class="upload-area">
+            <div class="upload-box" onclick="document.getElementById('file-dad').click()">
+                <img id="img-dad" class="preview-img">
+                <i class="fas fa-mars"></i>
+                <span>Ảnh Bố</span>
+                <input type="file" id="file-dad" hidden accept="image/*" onchange="previewImage(this, 'img-dad')">
+            </div>
+            <div class="upload-box" onclick="document.getElementById('file-mom').click()">
+                <img id="img-mom" class="preview-img">
+                <i class="fas fa-venus"></i>
+                <span>Ảnh Mẹ</span>
+                <input type="file" id="file-mom" hidden accept="image/*" onchange="previewImage(this, 'img-mom')">
+            </div>
+        </div>
+
+        <button class="btn-gen" onclick="batDauGhep()">
+            <i class="fas fa-magic"></i> XEM MẶT CON NGAY
+        </button>
+
+        <div class="loading-area" id="loading">
+            <div class="status-text" id="status">Đang phân tích dữ liệu khuôn mặt...</div>
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        </div>
+
+        <div class="result-area" id="result">
+            <img src="" id="baby-img" class="result-img">
+            <div class="result-text">
+                Chúc mừng! Đây là thiên thần tương lai của bạn ❤️<br>
+                <small>(Tỉ lệ giống bố: 65% - Giống mẹ: 35%)</small>
+            </div>
+            <br>
+            <a href="index.html" style="color: #a5b4fc; text-decoration: none;"> quay lại trang chủ</a>
+        </div>
+    </div>
+
+    <script>
+        // Danh sách ảnh em bé ngẫu nhiên (Lấy từ Unsplash)
+        const BABY_IMAGES = [
+            "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500",
+            "https://images.unsplash.com/photo-1510629618035-7117181c00f1?w=500",
+            "https://images.unsplash.com/photo-1522771753035-1a5b65f02c65?w=500",
+            "https://images.unsplash.com/photo-1506544070268-c116a4b18206?w=500"
+        ];
+
+        function previewImage(input, imgId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(imgId);
+                    img.src = e.target.result;
+                    img.style.display = "block";
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function batDauGhep() {
+            // Kiểm tra xem đã up ảnh chưa (Fake check)
+            const dad = document.getElementById('file-dad').files.length;
+            const mom = document.getElementById('file-mom').files.length;
+
+            if(dad === 0 || mom === 0) {
+                alert("Vui lòng tải lên ảnh Bố và Mẹ để AI phân tích!");
+                return;
+            }
+
+            // Ẩn nút, hiện Loading
+            document.querySelector('.btn-gen').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+
+            // Chạy thanh phần trăm giả
+            let percent = 0;
+            const bar = document.getElementById('progress');
+            const text = document.getElementById('status');
+            
+            const interval = setInterval(() => {
+                percent += Math.floor(Math.random() * 5) + 1;
+                if(percent > 100) percent = 100;
+                bar.style.width = percent + "%";
+
+                if(percent < 40) text.innerText = "Đang quét đặc điểm khuôn mặt...";
+                else if(percent < 80) text.innerText = "Đang tổng hợp gen di truyền...";
+                else text.innerText = "Đang render hình ảnh 4K...";
+
+                if(percent === 100) {
+                    clearInterval(interval);
+                    hienKetQua();
+                }
+            }, 100); // Tốc độ chạy (100ms)
+        }
+
+        function hienKetQua() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            
+            // Random ảnh em bé
+            const randomImg = BABY_IMAGES[Math.floor(Math.random() * BABY_IMAGES.length)];
+            document.getElementById('baby-img').src = randomImg;
+
+            // Kích hoạt quảng cáo Monetag lần nữa (Tối ưu doanh thu)
+            if(typeof window.show_8463214 === 'function') {
+                 window.show_8463214().then(() => {});
+            }
+        }
+    </script>
+</body>
+</html>
