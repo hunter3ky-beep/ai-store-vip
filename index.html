@@ -16,24 +16,26 @@
         
         .ad-banner { background: #000; padding: 15px; text-align: center; border-bottom: 1px solid #334155; }
         .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         
-        .card { background: #1e293b; border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid #334155; cursor: pointer; position: relative; display: flex; flex-direction: column; }
+        /* CARD STYLE: Chuyển thành thẻ <a> để tối ưu SEO và Quảng cáo */
+        .card { background: #1e293b; border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid #334155; cursor: pointer; position: relative; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .card:hover { transform: translateY(-8px); border-color: #6366f1; box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3); }
         .badge { position: absolute; top: 10px; right: 10px; background: #ef4444; color: white; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 20px; z-index: 2; }
-        .card-img { height: 160px; background-size: cover; background-position: center; }
-        .card-body { padding: 15px; flex-grow: 1; }
+        .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .card-img::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, #1e293b, transparent); }
+        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 8px; }
-        .card-desc { font-size: 13px; color: #94a3b8; margin-bottom: 15px; height: 40px; overflow: hidden; }
+        .card-desc { font-size: 13px; color: #94a3b8; margin-bottom: 20px; line-height: 1.5; height: 40px; overflow: hidden; }
         
-        .btn-download { width: 100%; padding: 10px; border: none; border-radius: 8px; background: linear-gradient(to right, #4f46e5, #7c3aed); color: white; font-weight: bold; cursor: pointer; }
+        .btn-download { margin-top: auto; width: 100%; padding: 12px; border: none; border-radius: 8px; background: linear-gradient(to right, #6366f1, #8b5cf6); color: white; font-weight: bold; text-align: center; }
 
-        /* KHU VỰC TUYỂN QUÂN (MONETAG REF) */
-        .recruit-section { margin-top: 50px; background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 40px; text-align: center; border: 1px solid #4338ca; }
+        /* KHU VỰC TUYỂN QUÂN MONETAG */
+        .recruit-section { margin: 50px auto; background: linear-gradient(135deg, #1e1b4b, #312e81); border-radius: 20px; padding: 40px; text-align: center; border: 1px solid #4338ca; max-width: 900px; }
         .btn-recruit { display: inline-block; background: #facc15; color: #000; padding: 15px 40px; border-radius: 50px; font-weight: 800; text-decoration: none; font-size: 20px; transition: 0.3s; margin-top: 20px; box-shadow: 0 0 20px rgba(250, 204, 21, 0.4); }
         .btn-recruit:hover { transform: scale(1.05); background: #fff; }
 
-        .shopee-banner { margin: 30px auto; padding: 20px; background: #ff4d00; border-radius: 12px; text-align: center; cursor: pointer; }
+        .shopee-banner { margin: 30px auto; padding: 20px; background: linear-gradient(45deg, #ff5722, #f53d2d); border-radius: 12px; text-align: center; cursor: pointer; color: white; text-decoration: none; display: block; font-weight: bold; }
         .footer { text-align: center; padding: 30px; color: #475569; font-size: 12px; border-top: 1px solid #334155; }
     </style>
 </head>
@@ -41,7 +43,7 @@
 
     <div class="header">
         <div class="header-logo"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828807.png"></div>
-        <h1>VICTORY HUB AI</h1>
+        <h1>KHO APP AI & TOOLS VIP</h1>
     </div>
 
     <div class="ad-banner">
@@ -52,42 +54,80 @@
 
     <div class="container">
         <div class="grid">
-            <div class="card" onclick="window.open('https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4', '_blank')">
-                <span class="badge">HOT MMO</span>
-                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=400');"></div>
+            <a href="https://nutstudio.imyfone.com?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge" style="background: #e11d48;">AI SUPER APP 🚀</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
                 <div class="card-body">
-                    <div class="card-title">iMyFone AnyTo</div>
-                    <div class="card-desc">Fake GPS iPhone/Android cực mượt. Cày Pokemon Go, Tinder bao phê.</div>
-                    <button class="btn-download">TẢI MIỄN PHÍ</button>
+                    <div class="card-title">iMyFone Nut Studio</div>
+                    <div class="card-desc">Tạo Video/Ảnh từ Text, Chat với GPT-4/Claude Offline cực mượt.</div>
+                    <div class="btn-download">TẢI MIỄN PHÍ</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="card" onclick="window.open('https://www.chatartpro.com/?from_ua=CQEWVNZ4', '_blank')">
-                <span class="badge">AI VIDEO</span>
-                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400');"></div>
+            <a href="https://www.topmediai.com/ai-art-generator?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge">18+ ART</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500');"></div>
+                <div class="card-body">
+                    <div class="card-title">TopMediai Art Gen</div>
+                    <div class="card-desc">Vẽ ảnh gái xinh Realistic/Anime không bị chặn Prompt.</div>
+                    <div class="btn-download">DÙNG THỬ FREE</div>
+                </div>
+            </a>
+
+            <a href="https://filme.imyfone.com/voice-changer?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge">TROLL GAME</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=500');"></div>
+                <div class="card-body">
+                    <div class="card-title">iMyFone MagicMic</div>
+                    <div class="card-desc">Đổi giọng thời gian thực trên Discord/Zalo/Game.</div>
+                    <div class="btn-download">TẢI XUỐNG</div>
+                </div>
+            </a>
+
+            <a href="https://www.chatartpro.com/?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge">MMO TOOL</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500');"></div>
                 <div class="card-body">
                     <div class="card-title">ChatArt Video AI</div>
-                    <div class="card-desc">Tự động tạo video TikTok/Youtube từ văn bản. Hái tiền thụ động.</div>
-                    <button class="btn-download">DÙNG THỬ FREE</button>
+                    <div class="card-desc">Tự động tạo video TikTok/Youtube hái tiền từ văn bản.</div>
+                    <div class="btn-download">TẠO VIDEO</div>
                 </div>
-            </div>
-            
-            </div>
+            </a>
+
+            <a href="https://www.imyfone.com/location-changer?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge">HOT MMO</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=500');"></div>
+                <div class="card-body">
+                    <div class="card-title">iMyFone AnyTo</div>
+                    <div class="card-desc">Fake GPS iPhone/Android đi bất cứ đâu trên thế giới.</div>
+                    <div class="btn-download">FAKE VỊ TRÍ</div>
+                </div>
+            </a>
+
+            <a href="https://www.imyfone.com/file-repair?from_ua=CQEWVNZ4" target="_blank" class="card">
+                <span class="badge">AI REPAIR</span>
+                <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=500');"></div>
+                <div class="card-body">
+                    <div class="card-title">UltraRepair AI</div>
+                    <div class="card-desc">Phục hồi ảnh mờ, video lỗi, file hỏng chỉ trong 1 click.</div>
+                    <div class="btn-download">SỬA FILE NGAY</div>
+                </div>
+            </a>
+        </div>
 
         <div class="recruit-section">
             <h2 style="color: #fff;">💎 BẠN MUỐN KIẾM TIỀN NHƯ TÔI?</h2>
             <p style="color: #a5b4fc;">Tham gia mạng lưới quảng cáo Monetag - Nhận 5% hoa hồng trọn đời!</p>
             <a href="https://monetag.com/?ref_id=z8Hx" target="_blank" class="btn-recruit">ĐĂNG KÝ NGAY TẠI ĐÂY</a>
-            <p style="font-size: 12px; margin-top: 15px; color: #6366f1;">(Link uy tín - Hỗ trợ rút tiền về ngân hàng Việt Nam)</p>
         </div>
 
-        <div class="shopee-banner" onclick="window.open('https://s.shopee.vn/40Zx6LmJxY', '_blank')">
-            <strong style="color: #fff;">🎁 SIÊU SALE PC/GAMING - GIẢM 50% HÔM NAY!</strong>
-        </div>
+        <a href="https://s.shopee.vn/40Zx6LmJxY" target="_blank" class="shopee-banner">
+            🎁 SIÊU SALE PC/GAMING - GIẢM 50% HÔM NAY!
+        </a>
     </div>
 
     <div class="footer">
-        &copy; 2026 VICTORY HUB AI - BY PYLOGOS. TRUY CẬP ĐỂ CẬP NHẬT KÈO MMO MỚI NHẤT.
+        &copy; 2026 VICTORY HUB AI - BY PYLOGOS.
     </div>
 
     <script>(function(s){s.dataset.zone='10410157',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
